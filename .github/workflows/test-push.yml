@@ -1,4 +1,5 @@
 name: test-build
+run-name: Test Hello
 
 on:
   push:
@@ -7,12 +8,23 @@ on:
   pull_request:
     
 jobs:
-  test:
+  job-1:
+    uses: ./.github/workflows/test-succeed.yml
+  job-2:
+    uses: ./.github/workflows/test-fail.yml
+  job-3:
+    needs: [job-2]
+    uses: ./.github/workflows/test-succeed.yml
+      
+  notify:
+    needs: [job-3, job-2, job-1]
+    if: ${{ failure() }}
     runs-on: ubuntu-22.04
     steps:
-      - name: Test job summary
+      - name: Test telegram
         run: |
-          echo "### Test! :rocket:" >> $GITHUB_STEP_SUMMARY
-      - name: Test notice
-        run: |
-          echo "::notice title=Hello:: World!"
+          curl \
+            -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_API_TOKEN }}/sendMessage \
+            -H 'Content-Type: application/json' \
+            -d '{"chat_id":"${{ secrets.TELEGRAM_CHAT_ID }}","text":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}", "parse_mode": "markdown"}' \
+            --fail
