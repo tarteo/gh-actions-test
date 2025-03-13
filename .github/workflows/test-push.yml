@@ -13,7 +13,7 @@ jobs:
       
   test:
     needs: [build]
-    if: ${{ success() }}
+    if: ${{ failure() }}
     runs-on: ubuntu-22.04
     steps:
       - name: Test telegram
