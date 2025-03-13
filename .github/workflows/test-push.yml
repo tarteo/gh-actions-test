@@ -11,10 +11,13 @@ jobs:
   job-1:
     uses: ./.github/workflows/test-succeed.yml
   job-2:
+    uses: ./.github/workflows/test-fail.yml
+  job-3:
+    needs: [job-2]
     uses: ./.github/workflows/test-succeed.yml
       
   notify:
-    needs: [job-2, job-1]
+    needs: [job-3, job-2, job-1]
     if: ${{ failure() }}
     runs-on: ubuntu-22.04
     steps:
