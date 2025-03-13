@@ -9,16 +9,12 @@ on:
     
 jobs:
   build:
-      uses: ./.github/workflows/test-wf.yml
+    uses: ./.github/workflows/test-wf.yml
+      
   test:
+    if: ${{ success() }}
     runs-on: ubuntu-22.04
     steps:
-      - name: Test job summary
-        run: |
-          echo "### Test! :rocket:" >> $GITHUB_STEP_SUMMARY
-      - name: Test notice
-        run: |
-          echo "::notice title=Hello:: World!"
       - name: Test telegram
         run: |
           curl \
