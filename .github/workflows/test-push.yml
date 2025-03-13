@@ -8,11 +8,13 @@ on:
   pull_request:
     
 jobs:
-  build:
-    uses: ./.github/workflows/test-wf.yml
+  job-1:
+    uses: ./.github/workflows/test-fail.yml
+  job-2:
+    uses: ./.github/workflows/test-succeed.yml
       
   test:
-    needs: [build]
+    needs: [job-2]
     if: ${{ failure() }}
     runs-on: ubuntu-22.04
     steps:
