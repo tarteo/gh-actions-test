@@ -9,7 +9,7 @@ on:
     
 jobs:
   job-1:
-    uses: ./.github/workflows/test-fail.yml
+    uses: ./.github/workflows/test-succeed.yml
   job-2:
     uses: ./.github/workflows/test-succeed.yml
       
