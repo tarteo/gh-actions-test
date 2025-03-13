@@ -9,4 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Message
-        run: echo "hello"
+        run: | 
+          echo "hello"
+          exit 1
