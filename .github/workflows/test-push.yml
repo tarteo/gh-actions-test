@@ -12,6 +12,7 @@ jobs:
     uses: ./.github/workflows/test-wf.yml
       
   test:
+    needs: [build]
     if: ${{ success() }}
     runs-on: ubuntu-22.04
     steps:
