@@ -13,8 +13,8 @@ jobs:
   job-2:
     uses: ./.github/workflows/test-succeed.yml
       
-  test:
-    needs: [job-2]
+  notify:
+    needs: [job-2, job-1]
     if: ${{ failure() }}
     runs-on: ubuntu-22.04
     steps:
