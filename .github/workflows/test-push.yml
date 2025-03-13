@@ -1,0 +1,12 @@
+name: test-build
+
+on:
+  push:
+    
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Test job summary
+        run: |
+          echo "### Test! :rocket:" >> $GITHUB_STEP_SUMMARY
