@@ -1,4 +1,4 @@
-name: test-wf
+name: test-succeed
 run-name: Reusable Workflow
 
 on:
@@ -10,5 +10,4 @@ jobs:
     steps:
       - name: Message
         run: | 
-          echo "hello"
           exit 0
