@@ -2,6 +2,7 @@ name: test-build
 
 on:
   push:
+  pull_request:
     
 jobs:
   test:
@@ -10,3 +11,6 @@ jobs:
       - name: Test job summary
         run: |
           echo "### Test! :rocket:" >> $GITHUB_STEP_SUMMARY
+      - name: Test notice
+        run: |
+          echo "::notice title=Hello:: World!"
