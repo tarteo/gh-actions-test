@@ -37,7 +37,7 @@ jobs:
           exit 0
       - name: Succeed
         run: | 
-          exit 1
+          exit 0
       - name: commit status
         uses: actions/github-script@v7
         if: failure()
