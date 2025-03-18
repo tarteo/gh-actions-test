@@ -47,6 +47,18 @@ jobs:
               state: "failure",
               context: "hello"
             })
+      - name: commit status
+        uses: actions/github-script@v7
+        if: success()
+        with:
+          script: |
+            github.rest.repos.createCommitStatus({
+              sha: "${{ github.sha }}",
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "success",
+              context: "hello"
+            })
       
 #   notify:
 #     needs: [job-3, job-2, job-1]
