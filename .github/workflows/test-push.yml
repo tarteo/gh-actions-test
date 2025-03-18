@@ -15,7 +15,7 @@ jobs:
   job-3:
     needs: [job-2]
     uses: ./.github/workflows/test-succeed.yml
-  test:
+  commit-status:
     runs-on: ubuntu-22.04
     steps:
       - name: commit status
