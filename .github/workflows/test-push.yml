@@ -22,7 +22,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            github.rest.commit.statuses({
+            github.rest.commit.createStatus({
               sha: ${{ github.sha }},
               owner: context.repo.owner,
               repo: context.repo.repo,
