@@ -16,7 +16,8 @@ jobs:
     needs: [job-2]
     uses: ./.github/workflows/test-succeed.yml
   commit-status:
-    permissions: write-all
+    permissions:
+      statuses: write
     runs-on: ubuntu-22.04
     steps:
       - name: commit status
